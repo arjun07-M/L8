@@ -1,0 +1,101 @@
+#include <stdio.h>
+
+// Structure to represent an ATM account
+typedef struct {
+    int accountNumber;
+    int pin;
+    float balance;
+} Account;
+
+// Function to create a new account
+Account createAccount(int accountNumber, int pin, float balance) {
+    Account account;
+    account.accountNumber = accountNumber;
+    account.pin = pin;
+    account.balance = balance;
+    return account;
+}
+
+// Function to check balance
+void checkBalance(Account account) {
+    printf("Available balance: Rs. %.2f\n", account.balance);
+}
+
+// Function to withdraw cash
+void withdrawCash(Account *account, float amount) {
+    if (amount > account->balance) {
+        printf("Insufficient balance!\n");
+    } else {
+        account->balance -= amount;
+        printf("Withdrawal successful. Remaining balance: Rs. %.2f\n", account->balance);
+    }
+}
+
+// Function to deposit cash
+void depositCash(Account *account, float amount) {
+    account->balance += amount;
+    printf("Deposit successful. New balance: Rs. %.2f\n", account->balance);
+}
+
+// Function to authenticate user
+int authenticateUser(Account account, int pin) {
+    if (account.pin == pin) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int main() {
+    // Create a new account
+    Account account = createAccount(1234, 1234, 1000.0);
+
+    int choice, pin;
+
+    while (1) {
+        printf("Welcome to ATM Machine System!\n");
+        printf("Enter your account number and pin to authenticate:\n");
+        printf("Account Number: ");
+        scanf("%d", &choice);
+        printf("Pin: ");
+        scanf("%d", &pin);
+
+        // Authenticate user
+        if (authenticateUser(account, pin) && choice == account.accountNumber) {
+            while (1) {
+                printf("\n1. Check Balance\n");
+                printf("2. Withdraw Cash\n");
+                printf("3. Deposit Cash\n");
+                printf("4. Exit\n");
+                printf("Enter your choice: ");
+                scanf("%d", &choice);
+
+                switch (choice) {
+                    case 1:
+                        checkBalance(account);
+                        break;
+                    case 2:
+                        float amount;
+                        printf("Enter amount to withdraw: Rs. ");
+                        scanf("%f", &amount);
+                        withdrawCash(&account, amount);
+                        break;
+                    case 3:
+                        printf("Enter amount to deposit: Rs. ");
+                        scanf("%f", &amount);
+                        depositCash(&account, amount);
+                        break;
+                    case 4:
+                        printf("Exiting...\n");
+                        return 0;
+                    default:
+                        printf("Invalid choice. Please choose a valid option.\n");
+                }
+            }
+        } else {
+            printf("Authentication failed. Please try again.\n");
+        }
+    }
+
+    return 0;
+}
