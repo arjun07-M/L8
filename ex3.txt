@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// Function to evaluate scholarship criteria
+int evaluateScholarship(float gpa, int extracurricularActivities) {
+    if (gpa >= 3.5 && extracurricularActivities >= 2) {
+        return 1; // Scholarship approved
+    } else {
+        return 0; // Scholarship not approved
+    }
+}
+
+int main() {
+    float gpa;
+    int extracurricularActivities;
+
+    // Input student's GPA and extracurricular activities
+    printf("Enter student's GPA: ");
+    scanf("%f", &gpa);
+    printf("Enter number of extracurricular activities: ");
+    scanf("%d", &extracurricularActivities);
+
+    // Evaluate scholarship criteria
+    int result = evaluateScholarship(gpa, extracurricularActivities);
+
+    // Print result
+    if (result == 1) {
+        printf("Scholarship approved!\n");
+    } else {
+        printf("Scholarship not approved.\n");
+    }
+
+    return 0;
+}
