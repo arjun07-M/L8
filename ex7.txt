@@ -1,0 +1,30 @@
+/* Style the body element */
+body {
+  background-color: #f2f2f2; /* Light gray background */
+  font-family: Arial, sans-serif; /* Font family */
+}
+
+/* Style the heading elements */
+h1 {
+  color: #00698f; /* Blue color */
+  text-align: center; /* Center alignment */
+}
+
+/* Style the paragraph elements */
+p {
+  font-size: 18px; /* Font size */
+  margin-bottom: 20px; /* Bottom margin */
+  padding: 10px; /* Padding */
+  border: 1px solid #ddd; /* Border */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Style the link elements */
+a {
+  text-decoration: none; /* Remove underline */
+  color: #0088cc; /* Blue color */
+}
+
+a:hover {
+  color: #0055cc; /* Darker blue color on hover */
+}
